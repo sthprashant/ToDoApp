@@ -5,11 +5,18 @@ class TaskDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Container(
-      height: 300,
-      width: 450,
+      //height: 300,
+      //width: 450,
       child: Card(
-
-        child: Text('data'),
+            elevation: 50,
+        child: Container(
+          padding: EdgeInsets.all(10),
+          child: Column(
+            children: <Widget>[
+              Text('data'),
+            ],
+          ),
+        ),
         
       ),
     );

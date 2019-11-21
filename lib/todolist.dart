@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import './models/task.dart';
 
 class ToDoList extends StatelessWidget {
-  final List<String> listOfTodos;
+  final List<Task> listOfTodos;
   final Function deleteTask;
   final Function taskInfo;
 
@@ -31,7 +32,7 @@ class ToDoList extends StatelessWidget {
                       deleteTask(index);
                     },
                   ),
-                  title: Text(listOfTodos[index]),
+                  title: Text(listOfTodos[index].title),
                   //onTap: () {},
                   trailing: IconButton(
                     icon: Icon(Icons.info_outline),

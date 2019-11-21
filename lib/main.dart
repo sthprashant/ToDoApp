@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 
+import './new_task.dart';
 import './task_detail.dart';
 import './todolist.dart';
+import './models/task.dart';
 
 void main() => runApp(MyTodo());
 
@@ -21,39 +23,52 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _addEntryController = TextEditingController();
+  
 
-  final List<String> _listOfTodos = [];
+  final List<Task> _listOfTodos = [];
 
-  void submitTask() {
-    if (_addEntryController.text.isEmpty) {
-      return;
-    }
+  void submitTask(String title) {
 
-    setState(() {
-      _listOfTodos.add(_addEntryController.text);
-      _addEntryController.text = "";
-    });
+    final newTask = Task(
+      id: DateTime.now().toString(),
+      title: title,
+    );
+setState(() {
+  _listOfTodos.add(newTask);
+});
+
+    // if (_addEntryController.text.isEmpty) {
+    //   return;
+    // }
+    // final newTask = Task(
+    //   id: DateTime.now().toString(),
+    //   title: _addEntryController.text,
+
+    // );
+
+    // setState(() {
+    //   _listOfTodos.add(newTask);
+    //   _addEntryController.text = "";
+    // });
   }
 
   void deleteTask(int index) {
-    setState(() {
-      _listOfTodos.removeAt(index);
-    });
+    // setState(() {
+    //   _listOfTodos.removeAt(index);
+    // });
   }
 
   void taskInfo(context) {
     //print(context.toString());
-    showBottomSheet(
-      context: context,
-      builder: (_){
-        return GestureDetector(
-          onTap: (){},
-          child: TaskDetail(),
-          behavior: HitTestBehavior.opaque,
-        );
-      }
-    );
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return GestureDetector(
+            onTap: () {},
+            child: TaskDetail(),
+            //behavior: HitTestBehavior.opaque,
+          );
+        });
   }
 
   @override
@@ -65,11 +80,7 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: <Widget>[
           Container(
-            child: TextField(
-              controller: _addEntryController,
-              decoration: InputDecoration(labelText: 'Type here to add todo'),
-              onSubmitted: (_) => submitTask(),
-            ),
+            child: NewTask(submitTask),
           ),
           ToDoList(_listOfTodos, deleteTask, taskInfo),
         ],
