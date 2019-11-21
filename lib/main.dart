@@ -52,7 +52,12 @@ setState(() {
     // });
   }
 
-  void deleteTask(int index) {
+  void deleteTask(String id) {
+    setState(() {
+      _listOfTodos.removeWhere((task){
+        return task.id == id;
+      });
+    });
     // setState(() {
     //   _listOfTodos.removeAt(index);
     // });

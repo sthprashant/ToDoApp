@@ -29,7 +29,7 @@ class ToDoList extends StatelessWidget {
                   leading: IconButton(
                     icon: Icon(Icons.check_circle_outline),
                     onPressed: () {
-                      deleteTask(index);
+                      deleteTask(listOfTodos[index].id);
                     },
                   ),
                   title: Text(listOfTodos[index].title),
