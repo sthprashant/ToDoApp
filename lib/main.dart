@@ -59,23 +59,26 @@ class _HomePageState extends State<HomePage> {
     // });
   }
 
-  void updateTask({String title, String notes}){
-      setState(() {
-        
-      });
+  void updateTask({String title, String notes}) {
+    setState(() {});
   }
 
   void taskInfo(BuildContext context, int index) {
     //print(context.toString());
     showModalBottomSheet(
-        context: context,
-        builder: (_) {
-          return GestureDetector(
-            onTap: () {},
-            child: TaskDetail(_listOfTodos,index,updateTask),
-            //behavior: HitTestBehavior.opaque,
-          );
-        },);
+      context: context,
+      builder: (_) {
+        return GestureDetector(
+          onTap: () {},
+          child: TaskDetail(
+            _listOfTodos,
+            index,
+            updateTask,
+          ),
+          behavior: HitTestBehavior.opaque,
+        );
+      },
+    );
   }
 
   @override
