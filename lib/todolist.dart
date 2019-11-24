@@ -2,18 +2,18 @@ import 'package:flutter/material.dart';
 import './models/task.dart';
 
 class ToDoList extends StatelessWidget {
-  final List<Task> listOfTodos;
+  final List<Task> _listOfTodos;
   final Function deleteTask;
   final Function taskInfo;
 
-  ToDoList(this.listOfTodos, this.deleteTask, this.taskInfo);
+  ToDoList(this._listOfTodos, this.deleteTask, this.taskInfo);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.all(10),
       height: 600,
-      child: listOfTodos.isEmpty
+      child: _listOfTodos.isEmpty
           ? Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -29,20 +29,20 @@ class ToDoList extends StatelessWidget {
                   leading: IconButton(
                     icon: Icon(Icons.check_circle_outline),
                     onPressed: () {
-                      deleteTask(listOfTodos[index].id);
+                      deleteTask(_listOfTodos[index].id);
                     },
                   ),
-                  title: Text(listOfTodos[index].title),
+                  title: Text(_listOfTodos[index].title),
                   //onTap: () {},
                   trailing: IconButton(
                     icon: Icon(Icons.info_outline),
                     onPressed: () {
-                      taskInfo(context);
+                      taskInfo(context,index);
                     },
                   ),
                 );
               },
-              itemCount: listOfTodos.length,
+              itemCount: _listOfTodos.length,
             ),
     );
   }
