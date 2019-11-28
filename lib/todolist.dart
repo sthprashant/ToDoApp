@@ -10,40 +10,42 @@ class ToDoList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(10),
-      height: 600,
-      child: _listOfTodos.isEmpty
-          ? Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Text(
-                  'All Complete!',
-                  style: TextStyle(fontSize: 40),
-                ),
-              ],
-            )
-          : ListView.builder(
-              itemBuilder: (ctx, index) {
-                return ListTile(
-                  leading: IconButton(
-                    icon: Icon(Icons.check_circle_outline),
-                    onPressed: () {
-                      deleteTask(_listOfTodos[index].id);
-                    },
+    return SingleChildScrollView(
+          child: Container(
+        margin: EdgeInsets.all(10),
+        height: 600,
+        child: _listOfTodos.isEmpty
+            ? Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  Text(
+                    'All Complete!',
+                    style: TextStyle(fontSize: 40),
                   ),
-                  title: Text(_listOfTodos[index].title),
-                  //onTap: () {},
-                  trailing: IconButton(
-                    icon: Icon(Icons.info_outline),
-                    onPressed: () {
-                      taskInfo(context,index);
-                    },
-                  ),
-                );
-              },
-              itemCount: _listOfTodos.length,
-            ),
+                ],
+              )
+            : ListView.builder(
+                itemBuilder: (ctx, index) {
+                  return ListTile(
+                    leading: IconButton(
+                      icon: Icon(Icons.check_circle_outline),
+                      onPressed: () {
+                        deleteTask(_listOfTodos[index].id);
+                      },
+                    ),
+                    title: Text(_listOfTodos[index].title),
+                    //onTap: () {},
+                    trailing: IconButton(
+                      icon: Icon(Icons.info_outline),
+                      onPressed: () {
+                        taskInfo(context,index);
+                      },
+                    ),
+                  );
+                },
+                itemCount: _listOfTodos.length,
+              ),
+      ),
     );
   }
 }

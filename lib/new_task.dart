@@ -13,12 +13,12 @@ class NewTask extends StatelessWidget {
       return;
     }
 
-    submitTask(_addEntryController.text);
+    submitTask(title: _addEntryController.text);
   }
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+
     return TextField(
             controller: _addEntryController,
             decoration: InputDecoration(labelText: 'Type here to add todo'),

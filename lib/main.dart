@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './new_task.dart';
+//import './new_task.dart';
 import './task_detail.dart';
 import './todolist.dart';
 import './models/task.dart';
@@ -24,31 +24,22 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<Task> _listOfTodos = [];
 
-  void submitTask(String title) {
+  void submitTask({String title, String taskNotes, DateTime date}) {
     final newTask = Task(
       id: DateTime.now().toString(),
       title: title,
+      taskNotes: taskNotes,
+      date: date,
+
     );
     setState(() {
       _listOfTodos.add(newTask);
     });
-
-    // if (_addEntryController.text.isEmpty) {
-    //   return;
-    // }
-    // final newTask = Task(
-    //   id: DateTime.now().toString(),
-    //   title: _addEntryController.text,
-
-    // );
-
-    // setState(() {
-    //   _listOfTodos.add(newTask);
-    //   _addEntryController.text = "";
-    // });
+  
   }
 
   void deleteTask(String id) {
+
     setState(() {
       _listOfTodos.removeWhere((task) {
         return task.id == id;
@@ -59,9 +50,7 @@ class _HomePageState extends State<HomePage> {
     // });
   }
 
-  void updateTask({String title, String notes}) {
-    setState(() {});
-  }
+ 
 
   void taskInfo(BuildContext context, int index) {
     //print(context.toString());
@@ -73,7 +62,6 @@ class _HomePageState extends State<HomePage> {
           child: TaskDetail(
             _listOfTodos,
             index,
-            updateTask,
           ),
           behavior: HitTestBehavior.opaque,
         );
@@ -84,17 +72,23 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset : false,
       appBar: AppBar(
         title: Text('ToDo App'),
       ),
-      body: Column(
-        children: <Widget>[
-          Container(
-            child: NewTask(submitTask),
-          ),
-          ToDoList(_listOfTodos, deleteTask, taskInfo),
-        ],
+      body: Center(
+        child: Column(
+          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            // Container(
+            //   child: NewTask(submitTask),
+            // ),
+            ToDoList(_listOfTodos, deleteTask, taskInfo),
+          ],
+        ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(child: Icon(Icons.add), onPressed:(){})
     );
   }
 }
