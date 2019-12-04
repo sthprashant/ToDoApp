@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo/new_task.dart';
 
 //import './new_task.dart';
 import './task_detail.dart';
@@ -25,21 +26,33 @@ class _HomePageState extends State<HomePage> {
   final List<Task> _listOfTodos = [];
 
   void submitTask({String title, String taskNotes, DateTime date}) {
+    Navigator.of(context).pop();
     final newTask = Task(
       id: DateTime.now().toString(),
       title: title,
       taskNotes: taskNotes,
       date: date,
-
     );
     setState(() {
       _listOfTodos.add(newTask);
     });
-  
+    
+  }
+
+  void addTaskSheet(BuildContext cntxt) {
+    showModalBottomSheet(
+        context: context,
+        builder: (_) {
+          return GestureDetector(
+            onTap: () {
+            },
+            child:NewTask(submitTask),
+            behavior: HitTestBehavior.opaque,
+          );
+        });
   }
 
   void deleteTask(String id) {
-
     setState(() {
       _listOfTodos.removeWhere((task) {
         return task.id == id;
@@ -49,8 +62,6 @@ class _HomePageState extends State<HomePage> {
     //   _listOfTodos.removeAt(index);
     // });
   }
-
- 
 
   void taskInfo(BuildContext context, int index) {
     //print(context.toString());
@@ -72,7 +83,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset : false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text('ToDo App'),
       ),
@@ -88,7 +99,10 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(child: Icon(Icons.add), onPressed:(){})
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => addTaskSheet(context),
+      ),
     );
   }
 }

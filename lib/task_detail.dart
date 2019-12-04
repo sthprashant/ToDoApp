@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:todo/new_task.dart';
 
 import './models/task.dart';
 
@@ -11,10 +10,9 @@ class TaskDetail extends StatelessWidget {
 
   TaskDetail(this.todos, this.index);
 
-  void updateField({String text, String }) {}
+  void updateField({String text}) {}
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Container(
       //height: 300,
       //width: 450,
