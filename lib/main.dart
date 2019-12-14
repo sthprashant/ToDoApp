@@ -24,10 +24,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<Task> _listOfTodos = [];
+  final List<Task> _completedListOfTodos = [];
 
   void submitTask({String title, String taskNotes, DateTime date}) {
-    Navigator.of(context).pop(); // this closes the modal after text field has been submitted,
-                                 // needs a stateful widget, does not work in stateless
+    Navigator.of(context)
+        .pop(); // this closes the modal after text field has been submitted,
+    // needs a stateful widget, does not work in stateless
     final newTask = Task(
       id: DateTime.now().toString(),
       title: title,
@@ -37,7 +39,6 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       _listOfTodos.add(newTask);
     });
-    
   }
 
   void addTaskSheet(BuildContext cntxt) {
@@ -45,9 +46,8 @@ class _HomePageState extends State<HomePage> {
         context: context,
         builder: (_) {
           return GestureDetector(
-            onTap: () {
-            },
-            child:NewTask(submitTask),
+            onTap: () {},
+            child: NewTask(submitTask),
             behavior: HitTestBehavior.opaque,
           );
         });
@@ -64,8 +64,14 @@ class _HomePageState extends State<HomePage> {
     // });
   }
 
+  void completeTask(Task newTodo) {
+    setState(() {
+      _completedListOfTodos.add(newTodo);
+    });
+    deleteTask(newTodo.id);
+  }
+
   void taskInfo(BuildContext context, int index) {
-    //print(context.toString());
     showModalBottomSheet(
       context: context,
       builder: (_) {
@@ -89,12 +95,8 @@ class _HomePageState extends State<HomePage> {
         title: Text('ToDo App'),
       ),
       body: Column(
-        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          // Container(
-          //   child: NewTask(submitTask),
-          // ),
-          ToDoList(_listOfTodos, deleteTask, taskInfo),
+          ToDoList(_listOfTodos, deleteTask, taskInfo, completeTask),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

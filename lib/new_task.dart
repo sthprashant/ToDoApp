@@ -38,12 +38,12 @@ class NewTask extends StatelessWidget {
           children: <Widget>[
             TextField(
               controller: _addEntryController,
-              decoration: InputDecoration(labelText: 'Type here to add todo'),
+              decoration: InputDecoration(labelText: 'Add Task'),
               onSubmitted: (_) => submitEntry(),
             ),
             TextField(
               controller: _descriptionController,
-              decoration: InputDecoration(labelText: 'Add Description'),
+              decoration: InputDecoration(labelText: 'Add Notes'),
               onSubmitted: (_) => submitEntry(),
             ),
           ],

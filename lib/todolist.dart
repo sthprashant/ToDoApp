@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 
 import './models/task.dart';
 
@@ -7,12 +6,12 @@ class ToDoList extends StatelessWidget {
   final List<Task> _listOfTodos;
   final Function deleteTask;
   final Function taskInfo;
+  final Function completeTask;
 
-  ToDoList(this._listOfTodos, this.deleteTask, this.taskInfo);
+  ToDoList(this._listOfTodos, this.deleteTask, this.taskInfo, this.completeTask);
 
   @override
   Widget build(BuildContext context) {
-    DismissDirection dismissDirection;
 
     return SingleChildScrollView(
       child: Container(
@@ -42,42 +41,16 @@ class ToDoList extends StatelessWidget {
                         _listOfTodos[index].id,
                       ),
                       child: ListTile(
-                        // leading: IconButton(
-                        //   padding: EdgeInsets.all(0),
-                        //   icon: Icon(Icons.check),
-                        //   onPressed: () {
-                        //     deleteTask(_listOfTodos[index].id);
-                        //   },
-                        // ),
                         title: Text(_listOfTodos[index].title),
                         subtitle: Text('data'),
-                        //onTap: () {},
-                        // trailing: FittedBox(
-                        //   child: Row(
-                        //     children: <Widget>[
-                        //       IconButton(
-                        //         icon: Icon(Icons.info_outline),
-                        //         onPressed: () {
-                        //           taskInfo(context, index);
-                        //         },
-                        //       ),
-                        //       IconButton(
-                        //         icon: Icon(Icons.delete_forever),
-                        //         onPressed: () {
-                        //           deleteTask(_listOfTodos[index].id);
-                        //         },
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ), s
                       ),
-                      //direction: DismissDirection.endToStart,
                       onDismissed: (direction) {
                         if (direction == DismissDirection.endToStart) {
                           deleteTask(_listOfTodos[index].id);
                         }
                         if (direction == DismissDirection.startToEnd) {
-                          print(direction);
+                          completeTask(_listOfTodos[index]);
+
                         }
                       },
                       secondaryBackground: deleteBackGround(),
