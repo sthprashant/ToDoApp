@@ -10,7 +10,6 @@ class TaskDetail extends StatelessWidget {
 
   TaskDetail(this.todos, this.index);
 
-  void updateField({String text}) {}
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -28,12 +27,8 @@ class TaskDetail extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: <Widget>[
-                    TextFormField(
-                      initialValue: todos[index].title,
-                      onChanged: (text){
-                        //updateTitle(text,index);
-                      },
-                    ),
+                    Text(todos[index].title),
+                    Text(todos[index].taskNotes),
                   ],
                 ),
               )

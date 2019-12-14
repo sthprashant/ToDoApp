@@ -4,6 +4,7 @@ class NewTask extends StatelessWidget {
   final Function submitTask;
   final _addEntryController = TextEditingController();
   final _descriptionController = TextEditingController();
+  //final String updatedText;
   //final String initVal;
   //final List<Task> taskList;
 

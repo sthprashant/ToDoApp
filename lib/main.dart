@@ -26,7 +26,8 @@ class _HomePageState extends State<HomePage> {
   final List<Task> _listOfTodos = [];
 
   void submitTask({String title, String taskNotes, DateTime date}) {
-    Navigator.of(context).pop();
+    Navigator.of(context).pop(); // this closes the modal after text field has been submitted,
+                                 // needs a stateful widget, does not work in stateless
     final newTask = Task(
       id: DateTime.now().toString(),
       title: title,
@@ -87,16 +88,14 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('ToDo App'),
       ),
-      body: Center(
-        child: Column(
-          //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            // Container(
-            //   child: NewTask(submitTask),
-            // ),
-            ToDoList(_listOfTodos, deleteTask, taskInfo),
-          ],
-        ),
+      body: Column(
+        //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          // Container(
+          //   child: NewTask(submitTask),
+          // ),
+          ToDoList(_listOfTodos, deleteTask, taskInfo),
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
