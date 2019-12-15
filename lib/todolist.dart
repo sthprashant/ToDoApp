@@ -8,27 +8,37 @@ class ToDoList extends StatelessWidget {
   final Function taskInfo;
   final Function completeTask;
 
-  ToDoList(this._listOfTodos, this.deleteTask, this.taskInfo, this.completeTask);
+  ToDoList(
+      this._listOfTodos, this.deleteTask, this.taskInfo, this.completeTask);
 
   @override
   Widget build(BuildContext context) {
-
     return SingleChildScrollView(
       child: Container(
         margin: EdgeInsets.all(10),
         height: 600,
         child: _listOfTodos.isEmpty
-            ? Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Center(
-                    child: Text(
-                      'All Complete!',
-                      style: TextStyle(fontSize: 40),
+            ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: <Widget>[
+                    Text(
+                      'Tasks all complete!',
+                      style: Theme.of(context).textTheme.title,
                       textAlign: TextAlign.center,
                     ),
-                  ),
-                ],
+                    Container(
+                      height: 300,
+                      child: Opacity(
+                        opacity: 0.2,
+                        child: Image.asset(
+                          'assets/images/smile.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               )
             : ListView.builder(
                 itemBuilder: (ctx, index) {
@@ -41,7 +51,10 @@ class ToDoList extends StatelessWidget {
                         _listOfTodos[index].id,
                       ),
                       child: ListTile(
-                        title: Text(_listOfTodos[index].title),
+                        title: Text(
+                          _listOfTodos[index].title,
+                          style: Theme.of(context).textTheme.title,
+                        ),
                         subtitle: Text('data'),
                       ),
                       onDismissed: (direction) {
@@ -50,7 +63,6 @@ class ToDoList extends StatelessWidget {
                         }
                         if (direction == DismissDirection.startToEnd) {
                           completeTask(_listOfTodos[index]);
-
                         }
                       },
                       secondaryBackground: deleteBackGround(),

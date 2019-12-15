@@ -32,24 +32,24 @@ class NewTask extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Container(
-        height: 400,
-        child: Column(
-          children: <Widget>[
-            TextField(
-              controller: _addEntryController,
-              decoration: InputDecoration(labelText: 'Add Task'),
-              onSubmitted: (_) => submitEntry(),
-            ),
-            TextField(
-              controller: _descriptionController,
-              decoration: InputDecoration(labelText: 'Add Notes'),
-              onSubmitted: (_) => submitEntry(),
-            ),
-          ],
+        child: Container(
+    height: 400,
+    child: Column(
+      children: <Widget>[
+        TextField(
+          controller: _addEntryController,
+          decoration: InputDecoration(labelText: 'Add Task'),
+          onSubmitted: (_) => submitEntry(),
         ),
-      ),
+        TextField(
+          controller: _descriptionController,
+          decoration: InputDecoration(labelText: 'Add Notes'),
+          onSubmitted: (_) => submitEntry(),
+        ),
+      ],
+    ),
+        ),
 
-    );
+      );
   }
 }
