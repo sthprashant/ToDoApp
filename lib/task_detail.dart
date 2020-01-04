@@ -21,18 +21,27 @@ class TaskDetail extends StatelessWidget {
         margin: EdgeInsets.all(0),
         child: Container(
           //padding: EdgeInsets.all(10),
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Text(todos[index].title),
-                    Text(todos[index].taskNotes),
-                  ],
+          width: 600,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                Text(
+                  todos[index].title,
+                  style: Theme.of(context).textTheme.title,
+                  textAlign: TextAlign.center,
                 ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Text(
+                    todos[index].taskNotes,
+                    textAlign: TextAlign.left,
+                  ),
+                )
+                // Text(todos[index].taskNotes,),
+              ],
+            ),
           ),
         ),
       ),

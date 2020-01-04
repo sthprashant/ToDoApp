@@ -19,25 +19,31 @@ class ToDoList extends StatelessWidget {
       height: 400,
       child: _listOfTodos.isEmpty
           ? Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Text(
-                    'Tasks all complete!',
-                    style: Theme.of(context).textTheme.title,
-                    textAlign: TextAlign.center,
-                  ),
-                  Container(
-                    height: 200,
-                    child: Opacity(
-                      opacity: 0.2,
-                      child: Image.asset(
-                        'assets/images/smile.jpg',
-                        fit: BoxFit.cover,
+              child: Container(
+                //height:600,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Container(
+                      //height: 200,
+                      child: Text(
+                        'Tasks all complete!',
+                        style: Theme.of(context).textTheme.title,
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                  ),
-                ],
+                    Container(
+                      height: 200,
+                      child: Opacity(
+                        opacity: 0.2,
+                        child: Image.asset(
+                          'assets/images/smile.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             )
           : ListView.builder(
@@ -51,7 +57,7 @@ class ToDoList extends StatelessWidget {
                       _listOfTodos[index].id,
                     ),
                     child: ListTile(
-                      onTap:() => taskInfo(context,index),
+                      onTap: () => taskInfo(context, index),
                       title: Text(
                         _listOfTodos[index].title,
                         style: Theme.of(context).textTheme.title,

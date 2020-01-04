@@ -40,14 +40,33 @@ class NewTask extends StatelessWidget {
           children: <Widget>[
             TextField(
               controller: _addEntryController,
-              decoration: InputDecoration(labelText: 'Add Task'),
+              decoration: InputDecoration(labelText: 'Task name'),
               onSubmitted: (_) => submitEntry(),
             ),
             TextField(
               controller: _descriptionController,
-              decoration: InputDecoration(labelText: 'Add Notes'),
+              decoration: InputDecoration(labelText: 'Task Details'),
               onSubmitted: (_) => submitEntry(),
             ),
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: Text('no due date'),
+                  ),
+                  FlatButton(
+                    child: Text('Set Due Date'),
+                    onPressed: () {},
+                    color: Theme.of(context).primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                     // side: BorderSide(color: Colors.red),
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
