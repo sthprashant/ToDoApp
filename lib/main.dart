@@ -36,6 +36,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final List<Task> _listOfTodos = [];
   final List<Task> _completedListOfTodos = [];
+  //MediaQuery queryData;
 
   void submitTask({String title, String taskNotes, DateTime date}) {
     Navigator.of(context)
@@ -105,11 +106,8 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text('ToDo App'),
       ),
-      body: Column(
-        children: <Widget>[
-          ToDoList(_listOfTodos, deleteTask, taskInfo, completeTask),
-        ],
-      ),
+      body:ToDoList(_listOfTodos, deleteTask, taskInfo, completeTask),
+
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
